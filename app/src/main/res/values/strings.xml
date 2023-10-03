@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DashOBD+</string>
+    <string name="app_car_service_name">DashOBD+</string>
 </resources>
