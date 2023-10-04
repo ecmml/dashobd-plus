@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="left">
 
 
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:text="Upgrade"
+            app:backgroundTint="@color/main_blue"
+            android:contentDescription="Upgrade"
+            app:srcCompat="@drawable/home_icon"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/main_blue"
+            android:layout_marginLeft="5sp"
+            android:contentDescription="Upgrade"
+            app:srcCompat="@drawable/settings"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DashOBD+"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginRight="40sp"
+
+            android:textSize="35sp"/>
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="horizontal">
     <com.github.anastr.speedviewlib.PointerSpeedometer
 
-        android:layout_width="275sp"
-        android:layout_height="275sp"
+        android:layout_width="250sp"
+        android:layout_height="250sp"
 
         android:layout_gravity="left|center_vertical"
         app:sv_backgroundCircleColor="@android:color/transparent"
@@ -22,8 +65,8 @@
 
     <com.github.anastr.speedviewlib.PointerSpeedometer
 
-        android:layout_width="275sp"
-        android:layout_height="275sp"
+        android:layout_width="250sp"
+        android:layout_height="250sp"
         app:sv_backgroundCircleColor="@android:color/transparent"
 
         app:sv_pointerColor="#33B0FF"
@@ -32,12 +75,13 @@
 
     <com.github.anastr.speedviewlib.PointerSpeedometer
 
-        android:layout_width="275sp"
-        android:layout_height="275sp"
+        android:layout_width="250sp"
+        android:layout_height="250sp"
         app:sv_backgroundCircleColor="@android:color/transparent"
 
         app:sv_pointerColor="#33B0FF"
         android:layout_gravity="right|center_vertical"
         />
+</LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

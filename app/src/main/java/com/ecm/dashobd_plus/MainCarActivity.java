@@ -1,9 +1,11 @@
 package com.ecm.dashobd_plus;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.apps.auto.sdk.CarActivity;
@@ -19,6 +21,9 @@ public class MainCarActivity extends CarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_car);
+
+
+
 
 
         FragmentManager fm = getSupportFragmentManager();
