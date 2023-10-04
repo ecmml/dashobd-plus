@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <com.github.anastr.speedviewlib.PointerSpeedometer
+
+        android:layout_width="275sp"
+        android:layout_height="275sp"
+
+        android:layout_gravity="left|center_vertical"
+        app:sv_backgroundCircleColor="@android:color/transparent"
+
+        app:sv_pointerColor="#33B0FF"
+        />
+
+    <com.github.anastr.speedviewlib.PointerSpeedometer
+
+        android:layout_width="275sp"
+        android:layout_height="275sp"
+        app:sv_backgroundCircleColor="@android:color/transparent"
+
+        app:sv_pointerColor="#33B0FF"
+        android:layout_gravity="center_horizontal|center_vertical"
+        />
+
+    <com.github.anastr.speedviewlib.PointerSpeedometer
+
+        android:layout_width="275sp"
+        android:layout_height="275sp"
+        app:sv_backgroundCircleColor="@android:color/transparent"
+
+        app:sv_pointerColor="#33B0FF"
+        android:layout_gravity="right|center_vertical"
+        />
+
+</FrameLayout>

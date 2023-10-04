@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Default Gauge Style -->
+    <style name="GaugeTheme">
+        <item name="sv_backgroundCircleColor">@android:color/transparent</item>
+        <!--<item name="android:background">@drawable/gauge_circle_100</item>-->
+        <item name="sv_speedometerColor">@android:color/transparent</item>
+    </style>
+
+    <style name="FordGaugeStyle" parent="@style/GaugeTheme">
+        <item name="sv_pointerColor">#33B0FF</item>
+    </style>
+
+
+</resources>
