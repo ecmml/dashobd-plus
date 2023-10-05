@@ -35,6 +35,17 @@
                 <category android:name="com.google.android.gms.car.category.CATEGORY_PROJECTION_OEM" />
             </intent-filter>
         </service>
+
+
+        <service
+            android:name=".services.DashObdService"
+            android:exported="true"
+            android:label="@string/app_car_service_name"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -1,19 +1,13 @@
 package com.ecm.dashobd_plus;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.ecm.dashobd_plus.services.DashObdService;
 import com.google.android.apps.auto.sdk.CarActivity;
-import com.google.android.apps.auto.sdk.MenuAdapter;
-import com.google.android.apps.auto.sdk.MenuAdapterCallback;
-import com.google.android.apps.auto.sdk.MenuController;
-import com.google.android.apps.auto.sdk.MenuItem;
-import com.google.android.apps.auto.sdk.m;
 
 public class MainCarActivity extends CarActivity {
 
@@ -28,17 +22,14 @@ public class MainCarActivity extends CarActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment currentFragment;
-        HomeFragment homeFragment = new HomeFragment();
+        DisplayFragment displayFragment = new DisplayFragment();
 
         fm.beginTransaction()
-                .add(R.id.fragment_container, homeFragment, HomeFragment.class.getSimpleName())
-                .hide(homeFragment).commit();
+                .add(R.id.fragment_container, displayFragment, DisplayFragment.class.getSimpleName())
+                .hide(displayFragment).commit();
 
 
-        fm.beginTransaction().show(homeFragment).commit();
-        
-
-
+        fm.beginTransaction().show(displayFragment).commit();
 
 
 
@@ -46,6 +37,16 @@ public class MainCarActivity extends CarActivity {
 
 
 
+        initDashObdService();
 
+
+
+    }
+
+
+    private void initDashObdService(){
+
+        Intent intent = new Intent(this, DashObdService.class);
+        startService(intent);
     }
 }

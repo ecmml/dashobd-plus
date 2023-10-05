@@ -4,11 +4,13 @@ package com.ecm.dashobd_plus;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.ecm.dashobd_plus.services.DashObdService;
 import com.google.android.apps.auto.sdk.CarActivity;
 import com.google.android.apps.auto.sdk.CarActivityService;
 
@@ -38,6 +40,10 @@ public class CarService extends CarActivityService {
 
         return MainCarActivity.class;
     }
+
+
+
+
 
 
 
