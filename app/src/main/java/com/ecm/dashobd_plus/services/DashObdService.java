@@ -40,7 +40,7 @@ public class DashObdService extends Service {
 
 
     private static final String DASHOBD_APP_PACKAGE = "com.ecm.dashobd";
-    private static final String OBDLIBSERVICE_CLASS = "com.ecm.dashobd.services.ObdLibServicee";
+    private static final String OBDLIBSERVICE_CLASS = "com.ecm.dashobd.services.ObdLibService";
 
 
     private boolean mIsBound = false;
@@ -134,6 +134,8 @@ public class DashObdService extends Service {
 
 
     private void sendDataRequest(){
+        if(mServiceMessenger == null)return;
+
         Message msg = Message.obtain(null, MSG_REQUEST_DATA);
         msg.replyTo = mMessenger;
         try {
@@ -158,6 +160,7 @@ public class DashObdService extends Service {
                     if(msg.arg1 == 0){
                         //TO-DO: handle is not a top supporter
                     }else{
+                        Log.v(TAG, "received data packet: " + msg.obj);
                         obdDataList = (ArrayList<ObdData>) msg.obj;
                     }
 
@@ -223,6 +226,8 @@ public class DashObdService extends Service {
 
            /* mServiceMessenger = new Messenger(service);
 
+            Log.v(TAG, "::mConnection => " + service);
+
 
             // We want to monitor the service for as long as we are
             // connected to it.
@@ -236,9 +241,13 @@ public class DashObdService extends Service {
 
                 mServiceMessenger = null;
                 mIsBound = false;
-            }*/
-
+            }
+*/
+            Log.v(TAG, "::mConnection => " + service);
             dashObdRemoteService = IDashObdRemoteService.Stub.asInterface(service);
+
+
+
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -250,6 +259,10 @@ public class DashObdService extends Service {
 
         }
     };
+
+
+
+
 
     @Override
     public void onDestroy(){
