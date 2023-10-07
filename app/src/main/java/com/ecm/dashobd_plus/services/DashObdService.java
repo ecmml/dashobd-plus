@@ -246,8 +246,11 @@ public class DashObdService extends Service {
 */
             Log.v(TAG, "::mConnection => " + service);
             dashObdRemoteService = IDashObdRemoteService.Stub.asInterface(service);
-
-            IDashObdRemoteServiceCallBack bt;
+            try {
+                dashObdRemoteService.registerCallBack(serviceCallBack);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
 
         }
 
@@ -258,6 +261,18 @@ public class DashObdService extends Service {
             mIsBound = false;
 
 
+        }
+    };
+
+    IDashObdRemoteServiceCallBack serviceCallBack = new IDashObdRemoteServiceCallBack() {
+        @Override
+        public void newObdData(int test) throws RemoteException {
+
+        }
+
+        @Override
+        public IBinder asBinder() {
+            return null;
         }
     };
 
