@@ -17,12 +17,12 @@ interface IDashObdRemoteService {
          * This shows how to do so, by registering a callback interface with
          * the service.
          */
-        void registerCallback(IDashObdRemoteServiceCallback cb);
+        //void registerCallback(IDashObdRemoteServiceCallback cb);
 
         /**
          * Remove a previously registered callback interface.
          */
-        void unregisterCallback(IDashObdRemoteServiceCallback cb);
+        //void unregisterCallback(IDashObdRemoteServiceCallback cb);
 
 
 }

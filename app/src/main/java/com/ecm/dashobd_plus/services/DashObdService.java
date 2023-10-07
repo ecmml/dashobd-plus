@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 
 import com.ecm.dashobd_plus.BuildConfig;
 import com.ecm.dashobd_plus.IDashObdRemoteService;
+import com.ecm.dashobd_plus.IDashObdRemoteServiceCallBack;
 import com.ecm.dashobd_plus.ObdData;
 import com.ecm.dashobd_plus.R;
 
@@ -246,7 +247,7 @@ public class DashObdService extends Service {
             Log.v(TAG, "::mConnection => " + service);
             dashObdRemoteService = IDashObdRemoteService.Stub.asInterface(service);
 
-
+            IDashObdRemoteServiceCallBack bt;
 
         }
 
