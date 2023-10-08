@@ -18,12 +18,10 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.ecm.dashobd_plus.BuildConfig;
-import com.ecm.dashobd_plus.IDashObdRemoteService;
-import com.ecm.dashobd_plus.IDashObdRemoteServiceCallBack;
+import com.ecm.dashobd.IDashObdRemoteService;
+import com.ecm.dashobd.IDashObdRemoteServiceCallBack;
 import com.ecm.dashobd_plus.ObdData;
-import com.ecm.dashobd_plus.R;
 
-import java.text.RuleBasedCollator;
 import java.util.ArrayList;
 
 public class DashObdService extends Service {
@@ -264,16 +262,14 @@ public class DashObdService extends Service {
         }
     };
 
-    IDashObdRemoteServiceCallBack serviceCallBack = new IDashObdRemoteServiceCallBack() {
+    IDashObdRemoteServiceCallBack serviceCallBack = new IDashObdRemoteServiceCallBack.Stub() {
+
         @Override
         public void newObdData(int test) throws RemoteException {
-
+            Log.v(TAG, "new obd data: " + test);
         }
 
-        @Override
-        public IBinder asBinder() {
-            return null;
-        }
+
     };
 
 
