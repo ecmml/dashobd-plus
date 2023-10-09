@@ -1,5 +1,4 @@
 package com.ecm.dashobd_plus.services;
-
 import static com.ecm.dashobd_plus.Constants.DATA_REFRESH_RATE;
 
 import android.app.Service;
@@ -20,7 +19,7 @@ import androidx.annotation.Nullable;
 import com.ecm.dashobd_plus.BuildConfig;
 import com.ecm.dashobd.IDashObdRemoteService;
 import com.ecm.dashobd.IDashObdRemoteServiceCallBack;
-import com.ecm.dashobd_plus.ObdData;
+import com.ecm.dashobd.ObdData;
 
 import java.util.ArrayList;
 
@@ -30,12 +29,14 @@ public class DashObdService extends Service {
     private final static String TAG = DashObdService.class.getSimpleName();
 
     //These values have to match those in DashOBD (ObdLibService)
-    private static final int MSG_REGISTER_CLIENT = 1;
+    public static final int MSG_REGISTER_CLIENT = 1;
     private static final int MSG_UNREGISTER_CLIENT = 2;
 
     private static final int MSG_GET_USER_STATUS = 3;
 
     private static final int MSG_REQUEST_DATA = 4;
+
+    public static final int MSG_RECEIVED_DATA = 5;
 
 
     private static final String DASHOBD_APP_PACKAGE = "com.ecm.dashobd";
@@ -49,11 +50,8 @@ public class DashObdService extends Service {
     Messenger mServiceMessenger;
 
 
-    static ArrayList<ObdData> obdDataList = new ArrayList<>();
+    ArrayList<Messenger> mClients;
 
-    public static ArrayList<ObdData> getObdDataList(){
-        return obdDataList;
-    }
 
 
 
@@ -73,6 +71,7 @@ public class DashObdService extends Service {
         if(BuildConfig.DEBUG)Log.v(TAG, "Starting DashOBDService");
         CommunicatorThread communicatorThread = new CommunicatorThread();
         communicatorThread.start();
+        mClients = new ArrayList<>();
     }
 
 
@@ -83,7 +82,7 @@ public class DashObdService extends Service {
         @Override
         public void run() {
             Looper.prepare();
-            obdDataList = new ArrayList<>();
+
             if(mMessenger == null){
                 incomingHandler = new IncomingHandler();
                 mMessenger = new Messenger(incomingHandler);
@@ -153,15 +152,12 @@ public class DashObdService extends Service {
 
             switch (msg.what) {
                 case MSG_REGISTER_CLIENT:
+                    mClients.add((Messenger) (msg.replyTo));
                     break;
                 case MSG_REQUEST_DATA:
 
-                    if(msg.arg1 == 0){
-                        //TO-DO: handle is not a top supporter
-                    }else{
-                        Log.v(TAG, "received data packet: " + msg.obj);
-                        obdDataList = (ArrayList<ObdData>) msg.obj;
-                    }
+                case MSG_RECEIVED_DATA:
+
 
 
             }
@@ -265,12 +261,39 @@ public class DashObdService extends Service {
     IDashObdRemoteServiceCallBack serviceCallBack = new IDashObdRemoteServiceCallBack.Stub() {
 
         @Override
-        public void newObdData(int test) throws RemoteException {
-            Log.v(TAG, "new obd data: " + test);
+        public void newObdData(ObdData data) throws RemoteException {
+            Log.v(TAG, "new obd data: " + data.getName() + " " + data.getResultUnit());
+            Message message = Message.obtain(null, MSG_RECEIVED_DATA);
+            message.obj = data;
+            broadcast(message);
+
+
+        }
+
+        @Override
+        public void allMonitoredParameters(ObdData[] allParameters) throws RemoteException {
+            Log.v(TAG, "Received parameters:=> " + allParameters);
         }
 
 
     };
+
+    private void broadcast(Message msg){
+        Log.v(TAG, "Broadcasting... to " + mClients.size()  + " Clients" );
+
+        for (int i = 0; i < mClients.size(); i++) {
+            try {
+                Message broadcastMsg = Message.obtain();
+                broadcastMsg.copyFrom(msg);
+                if (mClients.size() > i && mClients.get(i) != null) {
+                    mClients.get(i).send(broadcastMsg);
+                }
+            } catch (RemoteException e) {
+                // Failed to send message to client. Print trace and try next client.
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 

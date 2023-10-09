@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="?attr/backgroundColor"
 
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -17,7 +17,7 @@
 
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+      <!--  <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_action_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,34 +25,37 @@
             android:text="Upgrade"
             app:backgroundTint="@color/main_blue"
             android:contentDescription="Upgrade"
-            app:srcCompat="@drawable/home_icon"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_action_instructions"
+            app:srcCompat="@drawable/home_icon"/> -->
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/settings_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:backgroundTint="@color/main_blue"
             android:layout_marginLeft="5sp"
             android:contentDescription="Upgrade"
             app:srcCompat="@drawable/settings"/>
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DashOBD+"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            android:layout_height="match_parent"
             android:layout_marginRight="40sp"
+            android:gravity="center"
+            android:text="DashOBD+"
+            android:textColor="@color/white"
+            android:textSize="35sp"
 
-            android:textSize="35sp"/>
+            android:textStyle="bold" />
 
-    </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:layout_gravity="center"
-    android:orientation="horizontal">
-    <com.github.anastr.speedviewlib.PointerSpeedometer
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/zone_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!-- <com.github.anastr.speedviewlib.PointerSpeedometer
 
         android:layout_width="250sp"
         android:layout_height="250sp"
@@ -81,7 +84,7 @@
 
         app:sv_pointerColor="#33B0FF"
         android:layout_gravity="right|center_vertical"
-        />
-</LinearLayout>
+        />-->
+    </LinearLayout>
 
 </LinearLayout>
