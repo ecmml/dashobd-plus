@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ecm.dashobd_plus.carinput.CarInputManager;
 import com.ecm.dashobd_plus.models.ZonesViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 
 public class SettingsFragment extends CarFragment {
@@ -22,6 +24,8 @@ public class SettingsFragment extends CarFragment {
     public SettingsFragment() {
 
     }
+
+    private TextInputEditText editText;
 
 
 
@@ -42,8 +46,15 @@ public class SettingsFragment extends CarFragment {
         super.onViewCreated(view, savedInstanceState);
 
         homeBtn = view.findViewById(R.id.home_btn);
-
+        //editText = view.findViewById(R.id.pid_field);
         FragmentManager fm = getParentFragmentManager();
+
+       /* editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CarInputManager.getInstance().startInput(editText);
+            }
+        });*/
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

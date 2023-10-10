@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ecm.dashobd_plus.carinput.CarInputManager;
 import com.ecm.dashobd_plus.models.Zone;
 import com.ecm.dashobd_plus.models.ZonesViewModel;
 import com.ecm.dashobd_plus.services.DashObdService;
@@ -21,7 +22,7 @@ public class MainCarActivity extends CarActivity {
         setContentView(R.layout.activity_main_car);
 
 
-
+        initCarInputManager();
 
 
         FragmentManager fm = getSupportFragmentManager();
@@ -57,6 +58,10 @@ public class MainCarActivity extends CarActivity {
 
 
 
+    }
+
+    private void initCarInputManager(){
+        CarInputManager carInputManager = new CarInputManager(a());
     }
 
 
