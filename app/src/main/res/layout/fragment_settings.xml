@@ -37,6 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_marginLeft="10sp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -84,6 +85,7 @@
             android:text="Zone Settings"
             />
         <TextView
+            android:id="@+id/zone_one_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30sp"

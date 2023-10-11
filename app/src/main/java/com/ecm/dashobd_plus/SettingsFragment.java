@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ecm.dashobd_plus.carinput.CarInputManager;
 import com.ecm.dashobd_plus.models.ZonesViewModel;
@@ -20,6 +21,8 @@ import com.google.android.material.textfield.TextInputEditText;
 public class SettingsFragment extends CarFragment {
 
     FloatingActionButton homeBtn;
+
+    TextView zoneOneSettings;
 
     public SettingsFragment() {
 
@@ -46,6 +49,7 @@ public class SettingsFragment extends CarFragment {
         super.onViewCreated(view, savedInstanceState);
 
         homeBtn = view.findViewById(R.id.home_btn);
+        zoneOneSettings = view.findViewById(R.id.zone_one_settings);
         //editText = view.findViewById(R.id.pid_field);
         FragmentManager fm = getParentFragmentManager();
 
@@ -61,6 +65,15 @@ public class SettingsFragment extends CarFragment {
             public void onClick(View v) {
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new DisplayFragment(ZonesViewModel.getZones()))
+                        .commit();
+            }
+        });
+
+        zoneOneSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container, new ZoneSettingsFragment())
                         .commit();
             }
         });
